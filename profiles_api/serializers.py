@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from profiles_api import model
+from profiles_api import models
 
 
 class HelloSerializer(serializers.Serializer):
@@ -8,14 +8,14 @@ class HelloSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=10)
 
 
-class UserProfileSerializer(serializer.ModelSerializer):
+class UserProfileSerializer(serializers.ModelSerializer):
     """Serializes a user profile object"""
 
     class Meta:
         model = models.UserProfile
-        field = ('id', 'email', 'name', 'password')
+        fields = ('id', 'email', 'name', 'password')
         extra_kwargs = {
-            'password' = {
+            'password' : {
                 'write_only' : True,
                 'style': {'input_type': 'passwords'}
             }
